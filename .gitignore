@@ -1,0 +1,31 @@
+# Node / Frontend
+node_modules/
+.next/
+out/
+.env.local
+.env.development
+.env.production
+.env
+.yarn/
+*.log
+
+# Python / Backend
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Docker
+*.tar
+*.pid
+
+# macOS
+.DS_Store
+
+# System
+*.swp
+*.swo
+
+# VS Code / JetBrains
+.vscode/
+.idea/
