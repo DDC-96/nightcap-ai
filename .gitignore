@@ -11,6 +11,10 @@ out/
 *.env 
 .yarn/
 *.log
+**/eslint.config.*
+**/.eslintrc*
+tsconfig.json
+
 
 # Typescript 
 *.tsbuildinfo
