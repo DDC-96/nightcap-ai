@@ -6,6 +6,7 @@ out/
 .env.development
 .env.production
 .env
+*.env 
 .yarn/
 *.log
 
