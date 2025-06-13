@@ -1,7 +1,5 @@
-# 1. Base image
 FROM node:18-alpine AS base
 
-# 2. Dependencies install
 FROM base AS deps
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
@@ -10,7 +8,7 @@ RUN apk add --no-cache libc6-compat
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# 3. Build step
+
 FROM base AS builder
 WORKDIR /app
 
@@ -26,7 +24,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Build the Next.js app
 RUN npm run build
 
-# 4. Production runner
+# Production runner
 FROM base AS runner
 WORKDIR /app
 
