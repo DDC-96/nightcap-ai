@@ -10,6 +10,15 @@ out/
 .yarn/
 *.log
 
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+*.tfplan
+
+
 # Python / Backend
 __pycache__/
 *.pyc
