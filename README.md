@@ -37,7 +37,7 @@
 
 ### ⚠️ Notes
 
-- For local Docker builds, make sure both containers share the same Docker network
+- For local Docker builds, make sure both containers share the same Docker network (e,g. docker run -d --name nightcap-frontend --network <networkname> -p 3000:3000 nightcap-frontend) do the same for the backend container with would be running on <8000:8000>.
 - Rewrites are configured to route `/api/*` to the backend service in production builds
 
 ---
