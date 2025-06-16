@@ -10,7 +10,9 @@
 - **Backend**: FastAPI, Python 3.11
 - **Containerization**: Docker (multi-stage builds), Docker networks
 - **APIs**: AI cocktail generator endpoint, RESTful cocktail data
-- **AWS**: AWS Infra is going to be used to host this along with some Github Actions for CI/CD deploymets.
+- **AWS**: AWS Infra for Kubernetes cluster using EKS
+- **CI/CD**: GitHub Actions build out
+- **Secrets**: Doppler integration for credential management
 
 ---
 
