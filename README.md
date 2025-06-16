@@ -39,6 +39,7 @@
 
 - For local Docker builds, make sure both containers share the same Docker network (e,g. docker run -d --name nightcap-frontend --network `networkname` -p 3000:3000 nightcap-frontend) do the same for the backend container that would be running on port `8000:8000`.
 - Rewrites are configured to route `/api/*` to the backend service in production builds
+- Build Github Actions workflow for Docker, integrate Doppler Secrets
 
 ---
 
