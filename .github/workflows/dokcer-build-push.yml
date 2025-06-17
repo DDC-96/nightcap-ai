@@ -1,8 +1,7 @@
 name: Build and Push Docker Images
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-and-push:
@@ -10,37 +9,33 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
+      - name: Set up Multiplatform
+        uses: docker/setup-buildx-action@v4
+
+      - name: Verify Docker creds
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push backend image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/nightcap-backend:latest ./backend
-          docker push ${{ secrets.DOCKER_USERNAME }}/nightcap-backend:latest
+      - name: Build and push backend image (multi-platform with cache)
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/nightcap-backend:latest
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      - name: Build and push frontend image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/nightcap-frontend:latest ./frontend/nightcap-ui
-          docker push ${{ secrets.DOCKER_USERNAME }}/nightcap-frontend:latest
-
-      - name: Create Docker network
-        run: docker network create nightcap-net
-
-      - name: Run backend container
-        run: |
-          docker run -d --name nightcap-backend \
-            --network nightcap-net \
-            -p 8000:8000 \
-            ${{ secrets.DOCKER_USERNAME }}/nightcap-backend:latest
-
-      - name: Run frontend container
-        run: |
-          docker run -d --name nightcap-frontend \
-            --network nightcap-net \
-            -p 3000:3000 \
-            ${{ secrets.DOCKER_USERNAME }}/nightcap-frontend:latest
+      - name: Build and push frontend image (multi-platform with cache)
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend/nightcap-ui
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/nightcap-frontend:latest
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
