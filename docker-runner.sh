@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # VARS
-DOCKER_USER="dcruzdevops"
+DOCKER_USER=""
 BACKEND_IMAGE="$DOCKER_USER/nightcap-backend:latest"
 FRONTEND_IMAGE="$DOCKER_USER/nightcap-frontend:latest"
 FRONTEND_URL="http://localhost:3000"
@@ -14,7 +14,7 @@ docker rm -f nightcap-frontend nightcap-backend 2>/dev/null || true
 docker pull --platform "$PLATFORM" "$BACKEND_IMAGE"
 docker pull --platform "$PLATFORM" "$FRONTEND_IMAGE"
 
-# DOCKER NETWORK
+# DOCKER NETWORK BUILD
 docker network rm nightcap-net 2>/dev/null || true 
 docker network create nightcap-net
 
@@ -30,8 +30,6 @@ docker run -d \
     -p 3000:3000 "$FRONTEND_IMAGE"
 
 
-
-echo "Nightcap is now running."
 echo "Frontend URL: "$FRONTEND_URL" "
 echo "Backend URL: "$BACKEND_URL" "
 
