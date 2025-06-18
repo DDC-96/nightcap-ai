@@ -1,6 +1,6 @@
 # 🍸 Nightcap
 
-**Nightcap** is a sleek, modern cocktail web app designed to deliver a moody and elevated drink discovery experience. Built with a fullstack architecture using **Next.js** and **FastAPI**, it also allows users to generate AI-powered cocktail recommendations and explore handcrafted recipes leveraging the OPENAI API (In progress).
+**Nightcap** is a sleek, modern basic cocktail web app designed to deliver a moody and elevated drink discovery experience. Made by a former Bartender, for Bartenders. Built with a fullstack architecture using **Next.js** as the frontend and **FastAPI** serving the API, it also allows users to generate AI-powered cocktail recommendations and explore handcrafted recipes leveraging an AI LLM.
 
 ---
 
