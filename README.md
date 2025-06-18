@@ -1,6 +1,6 @@
 # Nightcap.
 
-**Nightcap** is a sleek, modern basic cocktail web app designed to deliver a moody and elevated drink discovery experience. Made by a former Bartender, for Bartenders. Built with a fullstack architecture using **Next.js** as the frontend and **FastAPI** serving the API, it also allows users to generate AI-powered cocktail recommendations and explore handcrafted recipes leveraging an AI LLM.
+**Nightcap** is a sleek, modern basic cocktail web app designed to deliver a moody and elevated drink discovery experience. Made by a former Bartender, for Bartenders. Built with a fullstack architecture using **Next.js** as the frontend and **FastAPI** serving the API, it also allows users to generate AI-powered cocktail recommendations and explore handcrafted recipes.
 
 ---
 
@@ -8,7 +8,7 @@
 
 - **Frontend**: Next.js 14 (App Router), TailwindCSS, TypeScript
 - **Backend**: FastAPI, Python 3.11
-- **Containerization**: Docker (multi-stage builds), Docker networks
+- **Containerization**: Docker (multi-stage builds)
 - **APIs**: AI cocktail generator endpoint, RESTful cocktail data
 - **AWS**: AWS Infra for Kubernetes cluster using EKS
 - **CI/CD**: GitHub Actions build out
