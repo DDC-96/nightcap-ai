@@ -44,15 +44,18 @@ else
   echo "No existing nightcap-frontend container"
 fi
 
-
+# PULL LATEST IMAGES 
 docker pull "$BACKEND_IMAGE"
 docker pull "$FRONTEND_IMAGE"
 sleep 2
 echo "Pulled latest Docker images.."
 
+
+# BUILD DOCKER NETWORK
 echo "Creating Docker network: $NETWORK_NAME"
 docker network create "$NETWORK_NAME" && echo "Docker network '$NETWORK_NAME' created."
 
+# CREATE AND RUN CONTAINERS 
 echo "Starting backend container..."
 if [ -f "$ENV_FILE" ]; then
   docker run -d \
