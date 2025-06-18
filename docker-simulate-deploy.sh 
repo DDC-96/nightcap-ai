@@ -8,7 +8,7 @@
 #
 # It performs the following:
 # 1. Removes any existing containers named `nightcap-backend` and `nightcap-frontend` in case some were left behind during local testing.
-# 2. Pulls the latest images for the backend and frontend from Docker Hub that was pushed by CICD integration.
+# 2. Pulls the latest images for the backend and frontend from Docker Hub that was pushed by the CICD workflow.
 # 3. Dynamically creates a new Docker network with an incremented version number 
 #    (e.g. nightcap-net-v1, nightcap-net-v2, etc.) so it stays static for now.
 # 4. Starts the backend container using an `.env` file for environment variables
