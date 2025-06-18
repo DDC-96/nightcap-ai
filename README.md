@@ -10,7 +10,7 @@
 - **Backend**: FastAPI, Python 3.11
 - **Containerization**: Docker (multi-stage builds)
 - **APIs**: AI cocktail generator endpoint, RESTful cocktail data
-- **AWS**: AWS Infra for Kubernetes cluster using EKS
+- **AWS**: Utilize Terraform to provision Kubernetes Infra. 
 - **CI/CD**: GitHub Actions build out
 - **Secrets**: Doppler integration for credential management
 
@@ -37,11 +37,7 @@
 
 ---
 
-### ⚠️ Notes
 
-- For local Docker builds, make sure both containers share the same Docker network (e,g. docker run -d --name nightcap-frontend --network `networkname` -p 3000:3000 nightcap-frontend) do the same for the backend container that would be running on port `8000:8000`.
-- Rewrites are configured to route `/api/*` to the backend service in production builds
-- Build Github Actions workflow for Docker, integrate Doppler Secrets
 
 ---
 
