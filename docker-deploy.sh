@@ -12,7 +12,7 @@
 #    (e.g. nightcap-net-v1, nightcap-net-v2, etc.) so it stays static for now.
 # 4. Starts the backend container using an `.env` file for environment variables
 # 5. Starts the frontend container
-# # Created tunnel nightcap-tunnel with id b197d0e9-0cd3-4bde-b430-19894196677f # Dont Commit THIS
+# 
 # 
 #  
 ################################################################################
