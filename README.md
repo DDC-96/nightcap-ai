@@ -4,6 +4,8 @@
 
 ---
 
+![Nightcap Architecture](./assets/diagram.jpeg)
+
 ### Stack
 
 - **Frontend**: Next.js 14 (App Router), TailwindCSS, TypeScript
