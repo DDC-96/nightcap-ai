@@ -30,7 +30,7 @@
 
 ### Current State
 
-- Frontend and backend are containerized and communicate via Docker network
+- Frontend and backend are containerized and communicate via Docker network (Depriciated in v1)
 - Image assets are handled via the Next.js `public/` directory
 - API routes proxy to FastAPI for seamless local dev and container use
 - Project structured with future AWS infrastructure support in mind
