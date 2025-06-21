@@ -19,7 +19,7 @@ type Props = {
 };
 
 export default async function RecipePage({ params }: Props) {
-  const res = await fetch(`http://nightcap-backend:8000/api/cocktails/${params.slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/cocktails/${params.slug}`, {
     cache: "no-store",
   });
 

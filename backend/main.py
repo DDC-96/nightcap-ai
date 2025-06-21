@@ -20,10 +20,13 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 # Define app
 app = FastAPI()
 
+# Get CORS origin from environment
+CORS_ORIGIN = os.environ.get("CORS_ORIGIN", "*")
+
 # Enable CORS for local frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[CORS_ORIGIN],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

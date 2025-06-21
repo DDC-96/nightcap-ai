@@ -20,7 +20,7 @@ export default function Home() {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
 
   useEffect(() => {
-    fetch("/api/cocktails")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/cocktails`)
       .then((res) => res.json())
       .then((data) => setCocktails(data))
       .catch((err) => console.error("Failed to fetch cocktails:", err));
