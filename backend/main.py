@@ -6,12 +6,22 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from openai import OpenAI
 import os
+import logging
+
+# Loading Basic Logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+CORS_ORIGIN = os.environ.get("CORS_ORIGIN", "*")
 
 if not OPENAI_API_KEY:
+    logger.error("Missing Open AI Key in environment variable.")
     raise RuntimeError("Missing OpenAI API key in environment variables.")
 
 # Initialize OpenAI client
@@ -19,9 +29,6 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Define app
 app = FastAPI()
-
-# Get CORS origin from environment
-CORS_ORIGIN = os.environ.get("CORS_ORIGIN", "*")
 
 # Enable CORS for local frontend
 app.add_middleware(
@@ -62,14 +69,14 @@ async def generate_cocktail(prompt: Prompt):
             max_tokens=350,
         )
         
-        print("OpenAI response recieved.")
+        logger.info("OpenAI response recieved.")
         return {"cocktail": response.choices[0].message.content.strip()}
     except Exception as e:
-        print("Error Calling OpenAPI:", str(e))
+        logger.error("Error Calling OpenAPI:", str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# Static cocktail data
+# cocktail data
 cocktails = [
     {
         "name": "Manhattan",
@@ -230,12 +237,15 @@ cocktails = [
 # GET all cocktails
 @app.get("/api/cocktails")
 def get_all_cocktails():
+    logger.info("GET /api/cocktails called")
     return cocktails
 
 # GET cocktail by slug
 @app.get("/api/cocktails/{slug}")
 def get_cocktail_by_slug(slug: str):
+    logger.info(f"GET /api/cocktails/{slug} called")
     for cocktail in cocktails:
         if cocktail["slug"] == slug:
             return cocktail
+    logger.warning(f"Cocktail not found: {slug}")
     raise HTTPException(status_code=404, detail="Cocktail not found")
