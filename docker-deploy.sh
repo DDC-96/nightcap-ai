@@ -23,33 +23,13 @@ BACKEND_IMAGE="$DOCKER_USER/nightcap-backend:latest"
 FRONTEND_IMAGE="$DOCKER_USER/nightcap-frontend:latest"
 ENV_FILE="./backend/.env"
 ENV_FRONTEND="./frontend/nightcap-ui/.env.production"
-# BASE_NET_NAME="nightcap-net"
-# LAST_VERSION=$(docker network ls --format '{{.Name}}' | grep "$BASE_NET_NAME-v" | sed -E "s/.*-v([0-9]+)/\1/" | sort -n | tail -n 1)
-# NEXT_VERSION=$((LAST_VERSION + 1))
-# NETWORK_NAME="${BASE_NET_NAME}-v${NEXT_VERSION}"
-
-# echo "Cleaning up existing containers if they exist..."
-# sleep 2
-
-# # REMOVE EXISITING CONTAINERS 
-# if docker ps -a --format '{{.Names}}' | grep -Eq "^nightcap-backend$"; then
-#   docker rm -f nightcap-backend && echo "Removed existing nightcap-backend container"
-# else
-#   echo "No existing nightcap-backend container"
-# fi
-
-# if docker ps -a --format '{{.Names}}' | grep -Eq "^nightcap-frontend$"; then
-#   docker rm -f nightcap-frontend && echo "Removed existing nightcap-frontend container"
-# else
-#   echo "No existing nightcap-frontend container"
-# fi
 
 # PULL LATEST IMAGES 
 docker pull "$BACKEND_IMAGE"
 docker pull "$FRONTEND_IMAGE"
 sleep 5
+
 echo "Pulling latest Docker images.."
-sleep 5
 
 
 # # BUILD DOCKER NETWORK
@@ -57,7 +37,7 @@ sleep 5
 # docker network create "$NETWORK_NAME" && echo "Docker network '$NETWORK_NAME' created."
 
 # CREATE AND RUN CONTAINERS 
-echo "Starting backend container..."
+echo "Running $BACKEND_IMAGE as a container..."
 sleep 5
 
 if [ -f "$ENV_FILE" ]; then
@@ -71,7 +51,7 @@ else
   exit 1
 fi
 
-echo "Starting frontend container..."
+echo "Running $FRONTEND_IMAGE as a container..."
 sleep 5
 
 if [ -f "$ENV_FRONTEND" ]; then 
@@ -87,4 +67,8 @@ fi
 
 
 sleep 5
+
+
+
+
 
