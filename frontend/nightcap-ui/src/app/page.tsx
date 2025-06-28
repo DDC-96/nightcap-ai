@@ -1,8 +1,8 @@
 "use client";
 
-import CocktailGenerator from "@/components/CocktailGenerator";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import CocktailGenerator from "@/components/CocktailGenerator";
 import CocktailCard from "@/components/CocktailCard";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -18,37 +18,46 @@ interface Cocktail {
 
 export default function Home() {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/cocktails`)
-      .then((res) => res.json())
-      .then((data) => setCocktails(data))
-      .catch((err) => console.error("Failed to fetch cocktails:", err));
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        setCocktails(data);
+        setError(null);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch cocktails:", err);
+        setError("Failed to load cocktails. Please refresh the page.");
+      })
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  if (error) return <div className="min-h-screen flex items-center justify-center text-red-500">{error}</div>;
 
   return (
     <main className="min-h-screen py-12 px-6 transition-colors duration-300 bg-night text-cream dark:bg-night dark:text-cream light:bg-white light:text-black">
-      {/* Theme Toggle in top-right */}
       <ThemeToggle />
 
-      {/* Hero / Site Header */}
       <section className="relative text-center mb-16">
-        {/* Flicker Background Glow */}
         <div className="absolute inset-0 h-[200px] bg-gradient-to-b from-gold/10 to-transparent blur-2xl pointer-events-none" />
-
         <h1 className="text-6xl md:text-7xl font-display tracking-wide z-10 relative">
           Nightcap<span className="text-gold">.</span>
         </h1>
-
         <p className="text-white/60 dark:text-white/60 light:text-black/60 text-sm md:text-base mt-2 z-10 relative italic">
           Curated classics & modern pours.
         </p>
       </section>
 
-      {/* Cocktail Generator */}
       <CocktailGenerator />
 
-      {/* Cocktail Grid */}
       <motion.div
         initial="hidden"
         whileInView="visible"

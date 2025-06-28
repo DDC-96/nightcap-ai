@@ -1,15 +1,34 @@
 /** @type {import('next').NextConfig} */
+
+const cspHeader = `
+  default-src 'self';
+  script-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' blob: data:;
+  font-src 'self';
+  connect-src 'self' https://api.cruzdaniel.dev;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'none';
+  upgrade-insecure-requests;
+  require-trusted-types-for 'script'; 
+`.replace(/\n/g, '').trim();
+
 const nextConfig = {
   output: 'standalone',
+  reactStrictMode: true,
+  experimental: {
+    disableOptimizedLoading: true,
+  },
   async headers() {
     return [
       {
-        source: '/(.*)', // apply to all routes
+        source: '/(.*)',
         headers: [
           {
             key: 'Content-Security-Policy',
-            value:
-              "default-src 'self'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.cruzdaniel.dev; frame-ancestors 'none';",
+            value: cspHeader,
           },
         ],
       },
@@ -18,13 +37,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
-// Add CSP  
-// default-src 'self': No external sources unless explicitly allowed
-// img-src 'self': Images must come from your own domain
-// script-src 'self': No third-party scripts allowed
-// style-src 'self' 'unsafe-inline': Styles are local; inline allowed for now (but consider reducing this later)
-// connect-src https://api.cruzdaniel.dev: Only your backend can be contacted
-// frame-ancestors 'none': No embedding your site via <iframe>
-
-

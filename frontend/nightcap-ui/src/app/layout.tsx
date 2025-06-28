@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter, Roboto_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider"; // ← custom wrapper
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { headers } from "next/headers";
+import Script from "next/script";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -16,6 +18,8 @@ export const metadata = {
   title: "Nightcap",
   description: "A moody, modern cocktail experience.",
 };
+
+export const dynamic = "force-dynamic";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
