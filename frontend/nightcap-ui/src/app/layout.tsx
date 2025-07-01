@@ -22,6 +22,7 @@ export const metadata = {
 export const dynamic = "force-dynamic";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${mono.variable} font-sans antialiased`}>
