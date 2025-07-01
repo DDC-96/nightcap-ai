@@ -13,7 +13,7 @@ export default function AIGeneratorPage() {
             Cocktail AI Generator
           </h1>
           <p className="text-white/60 max-w-xl mx-auto text-sm">
-            Craft your next drink with a little help from our custom-trained cocktail companion.
+            Build your next drink with a little help from our custom trained cocktail companion.
           </p>
         </section>
 
