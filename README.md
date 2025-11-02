@@ -34,7 +34,7 @@ The repository is organized into distinct service directories:
 
 ## Deployment
 
-The application is designed to be deployed using Docker. A utility script is provided to simplify स्थानीय setups.
+The application is designed to be deployed using Docker. A utility bash script is provided to simplify manual runtime.
 
 ### Prerequisites
 
