@@ -3,7 +3,6 @@
 
 Nightcap.ai is a modern, AI-powered web application for cocktail enthusiasts. It provides a curated collection of cocktail recipes and leverages the OpenAI API to generate unique, new cocktail ideas based on user prompts. The application is fully containerized with a Next.js frontend and a FastAPI backend.
 
-![Nightcap Architecture](./assets/diagram.jpeg)
 
 ## Features
 
