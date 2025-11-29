@@ -1,5 +1,4 @@
 # Nightcap.ai
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/DDC-96/nightcap-ai)
 
 Nightcap.ai is a modern, AI-powered web application for cocktail enthusiasts. It provides a curated collection of cocktail recipes and leverages the OpenAI API to generate unique, new cocktail ideas based on user prompts. The application is fully containerized with a Next.js frontend and a FastAPI backend.
 
